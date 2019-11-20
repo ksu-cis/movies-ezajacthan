@@ -22,7 +22,7 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 body{
-    background-color: palegoldenrod;
+    background-color: darkolivegreen;
 }
 
 #container{
@@ -43,4 +43,20 @@ form{
 
 #searchbox{
     width: 145px;
+}
+
+.genre{
+    color: darkred;
+}
+
+.ratingNumber{
+    color: lightyellow;
+}
+
+.movie-title{
+    color: silver;
+}
+
+#results{
+    width: 1000px;
 }

@@ -11,16 +11,16 @@
         @foreach (Movie movie in Model.Movies)
         {
             <div class="movie-entry">
-                <h2>@movie.Title <smaller>@(@movie?.MPAA_Rating == null ? "" : $"({@movie.MPAA_Rating})")</smaller></h2>
-                <i>@movie.Major_Genre</i>
+                <h2 class="movie-title">@movie.Title <smaller>@(@movie?.MPAA_Rating == null ? "" : $"({@movie.MPAA_Rating})")</smaller></h2>
+                <i class="genre">@movie.Major_Genre</i>
                 <div class="ratings">
                     <div>
                         Rotten Tomatoes
-                        <h3>@movie.Rotten_Tomatoes_Rating</h3>
+                        <h3 class="ratingNumber">@movie.Rotten_Tomatoes_Rating</h3>
                     </div>
                     <div>
                         IMDB
-                        <h3>@movie.IMDB_Rating</h3>
+                        <h3 class="ratingNumber">@movie.IMDB_Rating</h3>
                     </div>
                 </div>
             </div>
@@ -30,16 +30,26 @@
 
     <div id="search">
         <form method="post">
-            <input type="text" name="search" id="searchbox" />
+            <input type="text" name="Search" id="searchbox" value="@Model.Search" />
             <input type="submit" value="Search And Filter" />
 
             <div class="checkbox-list">
                 <h3>MPAA Rating</h3>
-                <label><input type="checkbox" name="rating" value="G" /> Rated G</label>
-                <label><input type="checkbox" name="rating" value="PG" /> Rated PG</label>
-                <label><input type="checkbox" name="rating" value="PG-13" /> Rated PG-13</label>
-                <label><input type="checkbox" name="rating" value="R" /> Rated R</label>
-                <label><input type="checkbox" name="rating" value="NC-17" /> Rated NC-17</label>
+                <label><input type="checkbox" name="Rating" value="G" checked="@Model.Rating.Contains("G")"/> Rated G</label>
+                <label><input type="checkbox" name="Rating" value="PG" checked="@Model.Rating.Contains("PG")" /> Rated PG</label>
+                <label><input type="checkbox" name="Rating" value="PG-13" checked="@Model.Rating.Contains("PG-13")" /> Rated PG-13</label>
+                <label><input type="checkbox" name="Rating" value="R" checked="@Model.Rating.Contains("R")" /> Rated R</label>
+                <label><input type="checkbox" name="Rating" value="NC-17" checked="@Model.Rating.Contains("NC-17")" /> Rated NC-17</label>
+
+                <h3>Review Scores</h3>
+                <label>
+                    Minimum IMDB Rating:
+                    <input type="number" min="0" max="10" step="0.1" name="MinIMDB" value="@Model.MinIMDB" />
+                </label>
+                <label>
+                    Maximum IMDB Rating:
+                    <input type="number" min="0" max="10" step="0.1" name="MaxIMDB" value="@Model.MaxIMDB"/>
+                </label>
             </div>
         </form>
     </div>
